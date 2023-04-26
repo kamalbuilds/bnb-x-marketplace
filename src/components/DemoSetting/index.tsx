@@ -6,7 +6,7 @@ import { ParticleChains as Chains } from '@particle-network/common';
 import { UIMode } from '@particle-network/auth';
 import { customStyle as defCustomStyle } from '../../types/customStyle';
 import PnSelect from '../PnSelect';
-import './index.scss';
+import '../../../styles/Home.module.scss';
 import { isJson } from '../../utils';
 
 const { TextArea } = Input;
