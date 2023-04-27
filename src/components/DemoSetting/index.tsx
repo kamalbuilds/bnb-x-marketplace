@@ -5,7 +5,7 @@ import { InfoCircleOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { ParticleChains as Chains } from '@particle-network/common';
 import { UIMode } from '@particle-network/auth';
 import { customStyle as defCustomStyle } from '../../types/customStyle';
-import PnSelect from '../PnSelect';
+// import PnSelect from '../PnSelect';
 import '../../../styles/Home.module.scss';
 import { isJson } from '../../utils';
 
@@ -168,7 +168,7 @@ function DemoSetting(props: any) {
                             }}
                         />
                     </div>
-                    <PnSelect
+                    {/* <PnSelect
                         value={chainKey}
                         onChange={switchChain}
                         options={chainOptions.map((item) => ({
@@ -176,30 +176,30 @@ function DemoSetting(props: any) {
                             label: item.fullname,
                             value: item.key,
                         }))}
-                    ></PnSelect>
+                    ></PnSelect> */}
                 </div>
             )}
             <div className="filter-item">
                 <div className="filter-label">Language:</div>
-                <PnSelect
+                {/* <PnSelect
                     value={language}
                     onChange={setLanguage}
                     options={LanguageOptions.map((item) => ({
                         label: item,
                         value: item,
                     }))}
-                ></PnSelect>
+                ></PnSelect> */}
             </div>
             <div className="filter-item">
                 <div className="filter-label">Auth Theme:</div>
-                <PnSelect
+                {/* <PnSelect
                     value={theme}
                     onChange={setTheme}
                     options={ThemeOptions.map((item) => ({
                         label: item,
                         value: item,
                     }))}
-                ></PnSelect>
+                ></PnSelect> */}
             </div>
             <div className="filter-item">
                 <div className="filter-label">
@@ -216,14 +216,14 @@ function DemoSetting(props: any) {
             {walletEntrance && (
                 <div className="filter-item">
                     <div className="filter-label">Wallet Theme:</div>
-                    <PnSelect
+                    {/* <PnSelect
                         value={walletTheme}
                         onChange={setWalletTheme}
                         options={ThemeOptions.map((item) => ({
                             label: item,
                             value: item,
                         }))}
-                    ></PnSelect>
+                    ></PnSelect> */}
                 </div>
             )}
 
@@ -235,14 +235,14 @@ function DemoSetting(props: any) {
                     </Tooltip>
                 </div>
 
-                <PnSelect
+                {/* <PnSelect
                     value={loginFormMode}
                     onChange={setLoginFormMode}
                     options={[
                         { value: 'false', label: 'Full' },
                         { value: 'true', label: 'Form mode' },
                     ]}
-                ></PnSelect>
+                ></PnSelect> */}
             </div>
             <div className="filter-item">
                 <div className="filter-label">Modal Border Radius:</div>
@@ -258,25 +258,25 @@ function DemoSetting(props: any) {
             </div>
             <div className="filter-item">
                 <div className="filter-label">Prompt Master Password Setting When Login</div>
-                <PnSelect
+                {/* <PnSelect
                     value={promptMasterPasswordSettingWhenLogin}
                     onChange={(value) => {
                         localStorage.setItem('promptMasterPasswordSettingWhenLogin', value + '');
                         setPromptMasterPasswordSettingWhenLogin(value);
                     }}
                     options={SettingWhenLoginOption}
-                ></PnSelect>
+                ></PnSelect> */}
             </div>
             <div className="filter-item">
                 <div className="filter-label">Prompt Security Setting When Sign</div>
-                <PnSelect
+                {/* <PnSelect
                     value={promptSettingWhenSign}
                     onChange={(value) => {
                         localStorage.setItem('promptSettingWhenSign', value + '');
                         setPromptSettingWhenSign(value);
                     }}
                     options={SettingWhenLoginOption}
-                ></PnSelect>
+                ></PnSelect> */}
             </div>
             <div className="filter-item">
                 <div className="filter-label">

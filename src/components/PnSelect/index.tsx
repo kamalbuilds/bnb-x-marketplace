@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Picker } from 'antd-mobile';
+// import { Picker } from 'antd-mobile';
 import { Select } from 'antd';
 import { DownOutline } from 'antd-mobile-icons';
-import type { PickerColumn, PickerValue } from 'antd-mobile/es/components/picker';
+// import type { PickerColumn, PickerValue } from 'antd-mobile/es/components/picker';
 import './index.scss';
 const Option = Select.Option;
 
@@ -65,7 +65,7 @@ function PnSelect(props: PnSelectProps) {
             </div>
 
             <div className="pn-select-box">
-                <Picker
+                {/* <Picker
                     confirmText={'Confirm'}
                     cancelText={'Cancel'}
                     columns={columns}
@@ -76,7 +76,7 @@ function PnSelect(props: PnSelectProps) {
                     chain-option // @ts-ignore
                     value={value ? [value] : value}
                     onConfirm={pickerChange}
-                />
+                /> */}
                 <div
                     className="pn-select"
                     onClick={() => {
