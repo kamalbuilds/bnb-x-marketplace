@@ -25,12 +25,6 @@ import { fromSunFormat } from '../src/utils/number-utils';
 import { customStyle as defCustomStyle } from '../src/types/customStyle';
 
 import {
-    DesktopOutlined,
-    ContainerOutlined,
-    TwitterOutlined,
-    ScanOutlined,
-    AndroidOutlined,
-    AppleOutlined,
     GithubOutlined,
     SafetyOutlined,
     DownOutlined,
@@ -128,12 +122,12 @@ function Home() {
                 window.particle.walletEntryDestroy();
             }
         }
-        const chainKey = localStorage.getItem('dapp_particle_chain_key') || 'Ethereum';
+        const chainKey = 'Ethereum';
         const chain = ParticleChains[chainKey];
         const particle = new ParticleNetwork({
-            projectId: process.env.REACT_APP_PROJECT_ID as string,
-            clientKey: process.env.REACT_APP_CLIENT_KEY as string,
-            appId: process.env.REACT_APP_APP_ID as string,
+            projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+            clientKey: process.env.NEXT_PUBLIC_CLIENT_KEY as string,
+            appId: process.env.NEXT_PUBLIC_APP_ID as string,
             chainName: chain?.name,
             chainId: chain?.id,
             securityAccount: {
@@ -156,21 +150,21 @@ function Home() {
         particle.auth.on('chainChanged', chainChanged);
         particle.auth.on('disconnect', disconnect);
 
-        setLoginState(particle && particle.auth.isLogin());
-        if (particle && particle.auth.isLogin()) {
-            particle.auth
-                .getUserSimpleInfo()
-                .catch((error: any) => {
-                    if (error.code === 10005 || error.code === 8005) {
-                        logout();
-                    }
-                })
-                .finally(() => {
-                    setUpdateHasPassword(updateHasPassword + 1);
-                });
-        }
+        // setLoginState(particle && particle.auth.isLogin());
+        // if (particle && particle.auth.isLogin()) {
+        //     particle.auth
+        //         .getUserSimpleInfo()
+        //         .catch((error: any) => {
+        //             if (error.code === 10005 || error.code === 8005) {
+        //                 logout();
+        //             }
+        //         })
+        //         .finally(() => {
+        //             setUpdateHasPassword(updateHasPassword + 1);
+        //         });
+        // }
         const particleProvider = new ParticleProvider(particle.auth);
-        window.web3 = new Web3(particleProvider as any | ParticleProvider);
+        // window.web3 = new Web3(particleProvider as any | ParticleProvider);
         return particle;
     }, [
         demoSetting.promptSettingWhenSign,
