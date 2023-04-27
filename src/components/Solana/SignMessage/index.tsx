@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Input, notification, Select } from 'antd';
 import { SolanaWallet } from '@particle-network/solana-wallet';
 import bs58 from 'bs58';
-import './index.scss';
 const { Option } = Select;
 
 function SignMessage(props: { solanaWallet: SolanaWallet; address: string; demoSetting: any; loginState: boolean }) {

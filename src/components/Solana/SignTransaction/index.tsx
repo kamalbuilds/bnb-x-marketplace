@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input, InputNumber, notification } from 'antd';
 import { SolanaWallet } from '@particle-network/solana-wallet';
 import bs58 from 'bs58';
-import './index.scss';
+import '../../../../styles/Solana.module.scss';
 import { PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
 import { isValidSolanaAddress } from '../../../utils';
 

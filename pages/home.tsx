@@ -53,30 +53,50 @@ function Home() {
     const [address, setAddress] = useState('');
     const [loginAccount, setLoginAccount] = useState<string>();
     const loadChainKey = () => {
-        const key = localStorage.getItem('dapp_particle_chain_key');
-        if (key && ParticleChains[key]) {
-            return key;
-        }
+        const isClient = typeof window !== 'undefined';
+        if (isClient) {
+            const key = localStorage.getItem('dapp_particle_chain_key');
+            if (key && ParticleChains[key]) {
+              return key;
+            }
+          }
         return 'Ethereum';
     };
 
     const [demoSetting, setDemosetting] = useState({
         loginAccount: '',
         chainKey: loadChainKey(),
-        language: localStorage.getItem('dapp_particle_language') || 'en',
-        loginFormMode: !!localStorage.getItem('dapp_particle_form_mode') ? 'true' : 'false',
-        promptMasterPasswordSettingWhenLogin: Number(
-            localStorage.getItem('promptMasterPasswordSettingWhenLogin') || '2'
-        ),
-        promptSettingWhenSign: Number(localStorage.getItem('promptSettingWhenSign') || '1'),
-        theme: localStorage.getItem('dapp_particle_theme') || 'light',
-        customStyle: localStorage.getItem('customStyle') || JSON.stringify(defCustomStyle),
-        modalBorderRadius: Number(localStorage.getItem('dapp_particle_modal_border_radius') || 10),
-        walletEntrance:
-            localStorage.getItem('dapp_particle_walletentrance') === 'true' ||
-            isNullish(localStorage.getItem('dapp_particle_walletentrance')),
-        walletTheme: localStorage.getItem('dapp_particle_wallettheme') || 'light',
-    });
+        language: 'en',
+        loginFormMode: 'false',
+        promptMasterPasswordSettingWhenLogin: 2,
+        promptSettingWhenSign: 1,
+        theme: 'light',
+        customStyle: JSON.stringify(defCustomStyle),
+        modalBorderRadius: 10,
+        walletEntrance: true,
+        walletTheme: 'light',
+      });
+    
+      useEffect(() => {
+        if (typeof localStorage !== 'undefined') {
+          setDemosetting((prevSetting) => ({
+            ...prevSetting,
+            language: localStorage.getItem('dapp_particle_language') || 'en',
+            loginFormMode: !!localStorage.getItem('dapp_particle_form_mode') ? 'true' : 'false',
+            promptMasterPasswordSettingWhenLogin: Number(
+              localStorage.getItem('promptMasterPasswordSettingWhenLogin') || '2'
+            ),
+            promptSettingWhenSign: Number(localStorage.getItem('promptSettingWhenSign') || '1'),
+            theme: localStorage.getItem('dapp_particle_theme') || 'light',
+            customStyle: localStorage.getItem('customStyle') || JSON.stringify(defCustomStyle),
+            modalBorderRadius: Number(localStorage.getItem('dapp_particle_modal_border_radius') || 10),
+            walletEntrance:
+              localStorage.getItem('dapp_particle_walletentrance') === 'true' ||
+              isNullish(localStorage.getItem('dapp_particle_walletentrance')),
+            walletTheme: localStorage.getItem('dapp_particle_wallettheme') || 'light',
+          }));
+        }
+      }, []);
 
     useEffect(() => {
         if (loginState) {
@@ -101,10 +121,12 @@ function Home() {
         const disconnect = () => {
             setLoginState(false);
         };
-        if (window.particle) {
-            window.particle.auth.off('chainChanged', chainChanged);
-            window.particle.auth.off('disconnect', disconnect);
-            window.particle.walletEntryDestroy();
+        if (typeof window !== 'undefined') {
+            if (window.particle) {
+                window.particle.auth.off('chainChanged', chainChanged);
+                window.particle.auth.off('disconnect', disconnect);
+                window.particle.walletEntryDestroy();
+            }
         }
         const chainKey = localStorage.getItem('dapp_particle_chain_key') || 'Ethereum';
         const chain = ParticleChains[chainKey];
