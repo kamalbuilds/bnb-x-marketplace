@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Input, notification } from 'antd';
 import { toChecksumAddress } from '@ethereumjs/util';
 import { recoverPersonalSignature } from '@metamask/eth-sig-util';
-import './index.scss';
+import '../../../../styles/Personal.module.scss';
 import { toBase58Address } from '@particle-network/auth';
 function PersonalSign(props: any) {
     const [loading, setLoading] = useState(0);
