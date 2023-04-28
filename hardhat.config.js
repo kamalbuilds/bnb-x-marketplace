@@ -22,6 +22,11 @@ module.exports = {
       accounts: [process.env.privateKey]
     }
     */
+    binanceTestnet: {
+      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
+      chainId: 97,
+      accounts: [process.env.privateKey]
+    }
   },
   solidity: {
     version: "0.8.4",
@@ -33,4 +38,3 @@ module.exports = {
     }
   }
 };
-
