@@ -1,25 +1,8 @@
 import { useState } from "react";
 import { ethers } from "ethers";
-import { create as ipfsHttpClient } from "ipfs-http-client";
 import { useRouter } from "next/router";
 import Web3Modal from "web3modal";
-import { Buffer } from "buffer";
-
-const projectId = process.env.INFURA_IPFS_ID;
-const projectSecret = process.env.INFURA_IPFS_SECRET;
-
-const authorization = `Basic ${Buffer.from(
-  `${projectId}:${projectSecret}`
-).toString("base64")}`;
-
-const client = ipfsHttpClient({
-  host: "ipfs.infura.io",
-  port: 5001,
-  protocol: "https",
-  headers: {
-    authorization: authorization,
-  },
-});
+import { NFTStorage } from 'nft.storage';
 
 import { marketplaceAddress } from "../config";
 import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
@@ -35,36 +18,27 @@ export default function CreateItem() {
 
   async function onChange(e) {
     const file = e.target.files[0];
-    try {
-      const added = await client.add(file, {
-        progress: (prog) => console.log(`received: ${prog}`),
-      });
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-      setFileUrl(url);
-    } catch (error) {
-      console.log("Error uploading file: ", error);
-    }
+    const nftstorage_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEVERWJCMEZCNTk3REI4MTUxNkU5M2Y4YmM3RjJmQ0Q2ODYzNDAyOEUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1ODU4MDY5OTE4MSwibmFtZSI6Ik11c2ljMyJ9.V6Ny_9VV_XLIIFDFIEG8alEdJTwxmfHJMaMDJEf00L4";
+    const client = new NFTStorage({ token: nftstorage_key });
+  
+    const metadata = await client.store({
+      name: formInput.name,
+      description: formInput.description,
+      image: new File([file], file.name, { type: file.type }),
+    });
+  
+    const url = metadata.url;
+    setFileUrl(url);
   }
 
   async function uploadToIPFS() {
     const { name, description, price } = formInput;
     if (!name || !description || !price || !fileUrl) return;
-    /* first, upload to IPFS */
-    const data = JSON.stringify({
-      name,
-      description,
-      image: fileUrl,
-    });
-    try {
-      const added = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-      /* after file is uploaded to IPFS, return the URL to use it in the transaction */
-      return url;
-    } catch (error) {
-      console.log("Error uploading file: ", error);
-    }
+  
+    const url = fileUrl;
+    return url;
   }
-
+  
   async function listNFTForSale() {
     const url = await uploadToIPFS();
     const web3Modal = new Web3Modal();
