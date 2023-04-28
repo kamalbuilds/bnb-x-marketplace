@@ -1,2 +1,2 @@
-export const nftmarketaddress = ""
+export const marketplaceAddress = ""
 export const nftaddress = ""
