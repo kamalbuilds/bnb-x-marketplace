@@ -22,7 +22,6 @@ const client = ipfsHttpClient({
 });
 
 import { marketplaceAddress } from "../config";
-
 import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
 
 export default function CreateItem() {
@@ -40,12 +39,13 @@ export default function CreateItem() {
       const added = await client.add(file, {
         progress: (prog) => console.log(`received: ${prog}`),
       });
-      const url = `${subdomain}/${added.path}`;
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       setFileUrl(url);
     } catch (error) {
       console.log("Error uploading file: ", error);
     }
   }
+
   async function uploadToIPFS() {
     const { name, description, price } = formInput;
     if (!name || !description || !price || !fileUrl) return;
@@ -57,7 +57,7 @@ export default function CreateItem() {
     });
     try {
       const added = await client.add(data);
-      const url = `${subdomain}/${added.path}`;
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       /* after file is uploaded to IPFS, return the URL to use it in the transaction */
       return url;
     } catch (error) {
