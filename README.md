@@ -16,6 +16,9 @@ Particle Network - utilising the NFT service
 
 4. Manta network- For getting the ingame assets and onchain Txns without disclosing the address.
 
+5. Dex Integrations 1inch
+![image](https://user-images.githubusercontent.com/95926324/235235682-1bc0b663-153a-4480-b95f-d74a4b992c67.png)
+
 ##  Advantages of Integrating a decentralized exchange (DEX) into a marketplace can be useful in several ways:
 
 Increased liquidity: By integrating a DEX, you can increase liquidity for your marketplace. A DEX allows users to trade cryptocurrencies without the need for a centralized exchange, which means that your marketplace can offer a broader range of cryptocurrencies without having to hold them all in-house.
