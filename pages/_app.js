@@ -1,10 +1,14 @@
 /* pages/_app.js */
 import '../styles/globals.css'
 import Link from 'next/link'
+import { ApolloProvider } from '@apollo/client'
+import { Client } from 'urql'
+import client from '../graphql/apolloclient'
 
 function MyApp({ Component, pageProps }) {
   return (
     <div>
+    
       <nav className="border-b p-6">
         <p className="text-4xl font-bold">Metaverse Marketplace</p>
         <div className="flex mt-4">
@@ -30,7 +34,9 @@ function MyApp({ Component, pageProps }) {
           </Link>
         </div>
       </nav>
+      <ApolloProvider client={client}>
       <Component {...pageProps} />
+      </ApolloProvider>
     </div>
   )
 }
