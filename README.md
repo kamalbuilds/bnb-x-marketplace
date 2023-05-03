@@ -1,8 +1,8 @@
 # Bnb-x-marketplace
 
- A decentralized cross-chain trading bot 
+ A ZK NFT Marketplace , where the NFTs are utilised  to tokenize Real World assets like Real Estate.
  
- that leverages the data retrieved from PancakeSwap, Uniswap via  NodeReal and 1inch to provide users with a seamless trading experience. The bot could be programmed to execute trades.
+ that leverages the data retrieved from PancakeSwap, Uniswap via  NodeReal and 1inch to provide users with a seamless trading experience.
 
 # Features
 
@@ -12,7 +12,7 @@
 
 3. Particle Auth + RainbowKit 
 
-Particle Network - utilising the NFT service
+Particle Network SDK - utilising the NFT service
 
 4. Manta network- For getting the ingame assets and onchain Txns without disclosing the address.
 
