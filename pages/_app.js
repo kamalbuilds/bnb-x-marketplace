@@ -1,9 +1,8 @@
 /* pages/_app.js */
 import '../styles/globals.css'
 import Link from 'next/link'
-import { ApolloProvider } from '@apollo/client'
-import { Client } from 'urql'
-import client from '../graphql/apolloclient'
+import { ApolloProvider } from '@apollo/client';
+import client from '../graphql/apolloclient';
 
 function MyApp({ Component, pageProps }) {
   return (
