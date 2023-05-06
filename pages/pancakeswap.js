@@ -7,7 +7,7 @@ function SwapData() {
 
   useEffect(() => {
     async function fetchData() {
-      const endpoint = 'https://open-platform.nodereal.io/a55e259ae5e94c97a7d4e6897e598ddd/uniswap/graphql';
+      const endpoint = 'https://open-platform.nodereal.io/a55e259ae5e94c97a7d4e6897e598ddd/pancakeswap-free/graphql';
       const graphQLClient = new GraphQLClient(endpoint);
 
       const query = gql`
