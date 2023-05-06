@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import Link from 'next/link'
 import { ApolloProvider } from '@apollo/client';
 import client from '../graphql/apolloclient';
+import DynamicWagmi from '../components/dynamicWagmi';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -34,7 +35,9 @@ function MyApp({ Component, pageProps }) {
         </div>
       </nav>
       <ApolloProvider client={client}>
-      <Component {...pageProps} />
+        <DynamicWagmi>
+          <Component {...pageProps} />
+        </DynamicWagmi>
       </ApolloProvider>
     </div>
   )
