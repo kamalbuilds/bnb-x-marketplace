@@ -24,6 +24,7 @@
     "ethers": "^5.5.4",
     "fs": "^0.0.1-security",
     "graphql": "^16.6.0",
+    "graphql-request": "^6.0.0",
     "hardhat": "^2.8.4",
     "ipfs-http-client": "^56.0.1",
     "ipfs-unixfs-importer": "^15.1.1",
