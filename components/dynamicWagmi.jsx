@@ -23,11 +23,12 @@ import { ParticleNetwork } from '@particle-network/auth';
 
 import { particleWallet } from '@particle-network/rainbowkit-ext';
 
-function DynamicWagmi(props: any) {
+function DynamicWagmi(props) {
+    
     const particle = new ParticleNetwork({
-        projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
-        clientKey: process.env.NEXT_PUBLIC_CLIENT_KEY as string,
-        appId: process.env.NEXT_PUBLIC_APP_ID as string,
+        projectId: process.env.NEXT_PUBLIC_PROJECT_ID  ,
+        clientKey: process.env.NEXT_PUBLIC_CLIENT_KEY ,
+        appId: process.env.NEXT_PUBLIC_APP_ID ,
     });
     const { chains, provider, webSocketProvider } = configureChains(
         [mainnet, polygon, optimism, arbitrum],
