@@ -13,7 +13,7 @@ contract NFTMarketplace is ERC721URIStorage {
     Counters.Counter private _itemsSold;
 
     uint256 listingPrice = 0.025 ether;
-    address payable owner;
+    address payable owner;q
 
     mapping(uint256 => MarketItem) private idToMarketItem;
 
