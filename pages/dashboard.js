@@ -6,7 +6,7 @@ import Image from 'next/image'
 import {
   marketplaceAddress
 } from '../config'
-
+import NFTTransferForm from '../components/NFTTransferForm';
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function CreatorDashboard() {
@@ -50,6 +50,7 @@ export default function CreatorDashboard() {
       <div className="p-4">
         <h2 className="text-2xl py-2">Items Listed</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+            <NFTTransferForm />
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
