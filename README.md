@@ -10,6 +10,10 @@
 
 2. Polyhedra - zkbridging the nfts
 
+Multi-chain NFT and GameFi
+
+zkBridge empowers our platform to interact with diverse blockchain networks, unleashing unparalleled opportunities for virtual asset creation, ownership,  fostering a thriving and interoperable digital landscape.
+
 3. Particle Auth + RainbowKit 
 
 Particle Network SDK - utilising the NFT service
