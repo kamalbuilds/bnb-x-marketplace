@@ -5,8 +5,9 @@ import Web3Modal from "web3modal";
 import { NFTStorage } from 'nft.storage';
 import Image from "next/image";
 import { marketplaceAddress } from "../config";
-import NFTMarketplace from "../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json";
+import NFTMarketplace from "../abi/NFTMarketplace.json";
 
+import abi from "../config";
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, updateFormInput] = useState({
@@ -50,7 +51,7 @@ export default function CreateItem() {
     const price = ethers.utils.parseUnits(formInput.price, "ether");
     let contract = new ethers.Contract(
       marketplaceAddress,
-      NFTMarketplace.abi,
+      NFTMarketplace,
       signer
     );
     let listingPrice = await contract.getListingPrice();
