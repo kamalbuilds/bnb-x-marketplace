@@ -4,7 +4,7 @@
  
  that leverages the data retrieved from PancakeSwap, Uniswap via  NodeReal and 1inch to provide users with a seamless trading experience.
 
-# Features
+# Technologies Used
 
 1. https://docs.nodereal.io/reference/uniswap-graphql-api - Using NodeReal to fetch the Swapping data from uniswap nd pancakeswap dex.
 
@@ -18,9 +18,12 @@ zkBridge empowers our platform to interact with diverse blockchain networks, unl
 
 Particle Network SDK - utilising the NFT service
 
-4. Manta network- For getting the ingame assets and onchain Txns without disclosing the address.
+4. Manta network- For minting Zk SBTs of the tokenised Assets. https://docs.manta.network/docs/developers/manta.js/how-to-mint-zk-sbt
 
 5. Dex Integrations 1inch
+
+Fusion Swap available for Users.
+
 ![image](https://user-images.githubusercontent.com/95926324/235235682-1bc0b663-153a-4480-b95f-d74a4b992c67.png)
 
 ##  Advantages of Integrating a decentralized exchange (DEX) into a marketplace can be useful in several ways:
