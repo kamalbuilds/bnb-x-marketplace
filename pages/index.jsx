@@ -19,8 +19,10 @@ export default function Home() {
   async function loadNFTs() {
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider()
-    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider)
-    const data = await contract.fetchMarketItems()
+    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
+    console.log(contract);
+    const data = await contract.fetchMarketItems();
+    console.log(data,"data");
 
     /*
     *  map over items returned from smart contract and format 
