@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button , FormControl , InputLabel , MenuItem , Select , TextField } from "@mui/material";
+import ABI from "./abi.json"
 
+import { ethers } from "ethers";
 
 export default function NFTTransferForm() {
   const [nftAddress, setNFTAddress] = useState("");
@@ -15,8 +17,64 @@ export default function NFTTransferForm() {
     event.preventDefault();
     setLoading(true);
 
-    // TODO: Send the form data to the smart contract
-    // and handle any errors or success responses
+    try {
+      // Check if MetaMask is installed
+      if (typeof window.ethereum === 'undefined') {
+        throw new Error("Please install MetaMask to interact with the Ethereum network");
+      }
+
+      // Request access to the user's MetaMask account
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+      // Get the provider
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+      // Get the signer
+      const signer = provider.getSigner();
+
+      // Create an instance of the NFTBridge contract
+      const contractAddress = "0x193E5a370D0CEc949dA625E340fad75D4b6dfF7D";
+      const contractABI = ABI;
+      const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+      // Convert the chain IDs to numbers
+      const tokenChainId = Number(tokenChain);
+      const toChainId = Number(toChain);
+      const destinationChainId = Number(dstChainId);
+
+      // Convert the token ID to a BigNumber
+      const tokenIdBN = ethers.BigNumber.from(tokenId);
+
+      // Call the transferNFT function on the contract
+      const tx = await contract.transferNFT(
+        nftAddress,
+        tokenIdBN,
+        tokenChainId,
+        toChainId,
+        destinationChainId,
+        dstAddress
+      );
+
+      // Wait for the transaction to be mined
+      await tx.wait();
+
+      // Reset the form fields
+      setNFTAddress("");
+      setTokenId("");
+      setTokenChain("");
+      setToChain("");
+      setDstChainId("");
+      setDstAddress("");
+
+      // Show success message to the user
+      alert("NFT transferred successfully!");
+    } catch (error) {
+      console.error(error);
+      // Show error message to the user
+      alert("An error occurred while transferring the NFT. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,6 +104,9 @@ export default function NFTTransferForm() {
             <MenuItem value={1}>Ethereum Mainnet</MenuItem>
             <MenuItem value={137}>Polygon Mainnet</MenuItem>
             <MenuItem value={250}>Fantom Opera</MenuItem>
+            <MenuItem value={5}>Goreli</MenuItem>
+            <MenuItem value={80001}>Polygon testnet</MenuItem>
+            <MenuItem value={4001}>Fantom testnet</MenuItem>
             {/* Add more options for other chains */}
           </Select>
         </FormControl>
@@ -55,6 +116,9 @@ export default function NFTTransferForm() {
           <Select value={toChain} onChange={(event) => setToChain(event.target.value)}>
             <MenuItem value={137}>Polygon Mainnet</MenuItem>
             <MenuItem value={250}>Fantom Opera</MenuItem>
+            <MenuItem value={5}>Goreli</MenuItem>
+            <MenuItem value={80001}>Polygon testnet</MenuItem>
+            <MenuItem value={4001}>Fantom testnet</MenuItem>
             {/* Add more options for other chains */}
           </Select>
         </FormControl>
@@ -82,6 +146,5 @@ export default function NFTTransferForm() {
           {loading ? "Loading..." : "Transfer NFT"}
         </Button>
       </form>
-
   );
 }

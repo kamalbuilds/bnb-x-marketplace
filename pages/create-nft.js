@@ -52,7 +52,7 @@ export default function CreateItem() {
     let contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace,
-      signer
+      abi
     );
     let listingPrice = await contract.getListingPrice();
     listingPrice = listingPrice.toString();
@@ -89,7 +89,13 @@ export default function CreateItem() {
           }
         />
         <input type="file" name="Asset" className="my-4" onChange={onChange} />
-        {fileUrl && <Image className="rounded mt-4" width="350" src={fileUrl} />}
+        {fileUrl && (
+  <div className="rounded mt-4" style={{ width: '350px', height: '350px' }}>
+    <Image src={fileUrl} alt="NFT Image" width={350} height={350} loader={() => fileUrl} className="rounded" />
+  </div>
+)}
+
+
         <button
           onClick={listNFTForSale}
           className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
