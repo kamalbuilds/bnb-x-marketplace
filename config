@@ -1,2 +1,5 @@
-export const marketplaceAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+export const marketplaceAddress = "0x533aDEE0E5486996adDb59D2cB500031E54B74E1"
 export const nftaddress = ""
+
+// earlier add - 0x5FbDB2315678afecb367f032d93F642f64180aa3
+// polygon - 0x533aDEE0E5486996adDb59D2cB500031E54B74E1

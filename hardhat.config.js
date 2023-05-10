@@ -4,7 +4,7 @@ const fs = require('fs');
 // const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 
 module.exports = {
-  defaultNetwork: "hardhat",
+  defaultNetwork: "binanceTestnet",
   networks: {
     hardhat: {
       chainId: 1337
@@ -24,7 +24,7 @@ module.exports = {
     }
     */
     binanceTestnet: {
-      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
+      url: "https://endpoints.omniatech.io/v1/bsc/testnet/public",
       chainId: 97,
       accounts: ['1156880db2768fe49431d238890240799814e3f27a007aab81c19c69b369fb81']
     }

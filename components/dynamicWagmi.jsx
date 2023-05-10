@@ -17,7 +17,7 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public';
 import '@rainbow-me/rainbowkit/styles.css';
 
-import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains';
+import { mainnet, polygon, optimism, arbitrum , bscTestnet} from 'wagmi/chains';
 import React from 'react';
 import { ParticleNetwork } from '@particle-network/auth';
 
@@ -31,7 +31,7 @@ function DynamicWagmi(props) {
         appId: process.env.NEXT_PUBLIC_APP_ID ,
     });
     const { chains, provider, webSocketProvider } = configureChains(
-        [mainnet, polygon, optimism, arbitrum],
+        [mainnet, polygon, optimism, arbitrum , bscTestnet],
         [publicProvider()]
     );
     const popularWallets = {

@@ -17,15 +17,15 @@ export default function CreatorDashboard() {
   }, [])
   async function loadNFTs() {
     const web3Modal = new Web3Modal({
-      network: 'mainnet',
+      network: 'testnet',
       cacheProvider: true,
     })
     const connection = await web3Modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
+    const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner()
 
-    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer)
-    const data = await contract.fetchItemsListed()
+    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer);
+    const data = await contract.fetchItemsListed();
 
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)

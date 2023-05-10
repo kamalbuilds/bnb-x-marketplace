@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ethers } from "ethers";
+import { ContractFactory, ethers } from "ethers";
 import { useRouter } from "next/router";
 import Web3Modal from "web3modal";
 import { NFTStorage } from 'nft.storage';
@@ -7,7 +7,7 @@ import Image from "next/image";
 import { marketplaceAddress } from "../config";
 import NFTMarketplace from "../abi/NFTMarketplace.json";
 
-import abi from "../config";
+console.log(NFTMarketplace,"NFTMarketplace abi");
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, updateFormInput] = useState({
@@ -37,6 +37,7 @@ export default function CreateItem() {
     if (!name || !description || !price || !fileUrl) return;
   
     const url = fileUrl;
+    console.log(url,"url");
     return url;
   }
   
@@ -49,17 +50,25 @@ export default function CreateItem() {
 
     /* next, create the item */
     const price = ethers.utils.parseUnits(formInput.price, "ether");
+    const gasPrice = await provider.getGasPrice();
+    const gasLimit = 200000;
+    const value = ethers.BigNumber.from(price).add(gasPrice.mul(gasLimit));
     let contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace,
-      abi
+      signer
     );
-    let listingPrice = await contract.getListingPrice();
-    listingPrice = listingPrice.toString();
+    console.log(contract,"contract");
+    // const value = ethers.utils.parseUnits("0.0001", "ether");
+    // let listingPrice = await contract.getListingPrice();
+    // listingPrice = listingPrice.toString();
     let transaction = await contract.createToken(url, price, {
-      value: listingPrice,
+      value: value,
+      gasLimit: gasLimit,
+      gasPrice: gasPrice
     });
     await transaction.wait();
+    console.log(transaction,"transaction");
 
     router.push("/");
   }

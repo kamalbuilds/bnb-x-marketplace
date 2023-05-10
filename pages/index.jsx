@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
 import Image from 'next/image';
-
+import { useContractRead } from 'wagmi';
 import {
   marketplaceAddress
 } from '../config';
@@ -14,9 +14,15 @@ export default function Home() {
   const [nfts, setNfts] = useState([])
   const [loadingState, setLoadingState] = useState('not-loaded')
   useEffect(() => {
-    loadNFTs()
+    LoadNFTs()
   }, [])
-  async function loadNFTs() {
+  async function LoadNFTs() {
+    const { getdata , isError, isLoading } = useContractRead({
+      address: marketplaceAddress,
+      abi: NFTMarketplace,
+      method: 'getListingPrice',
+    });
+    console.log('data:', data , isError, isLoading);
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider()
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
@@ -60,7 +66,7 @@ export default function Home() {
       value: price
     })
     await transaction.wait()
-    loadNFTs()
+    LoadNFTs()
   }
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
