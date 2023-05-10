@@ -11,18 +11,18 @@ import {
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function Home() {
-  const [nfts, setNfts] = useState([])
+  const { getdata , isError, isLoading } = useContractRead({
+    address: marketplaceAddress,
+    abi: NFTMarketplace,
+    method: 'getListingPrice',
+  });
+  console.log('data:', getdata , isError, isLoading);
+  const [nfts, setNfts] = useState([]);
   const [loadingState, setLoadingState] = useState('not-loaded')
   useEffect(() => {
     LoadNFTs()
   }, [])
   async function LoadNFTs() {
-    const { getdata , isError, isLoading } = useContractRead({
-      address: marketplaceAddress,
-      abi: NFTMarketplace,
-      method: 'getListingPrice',
-    });
-    console.log('data:', data , isError, isLoading);
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider()
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
