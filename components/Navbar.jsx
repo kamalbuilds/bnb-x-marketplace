@@ -9,7 +9,7 @@ const Navbar = () => {
       <AppBar position="static">
         <Toolbar className="flex justify-between items-center py-4">
           <Typography variant="h4" className="text-white font-bold">
-            Metaverse Marketplace
+            XBNB Marketplace
           </Typography>
           <div className="flex justify-center items-center">
             <Link href="/">
