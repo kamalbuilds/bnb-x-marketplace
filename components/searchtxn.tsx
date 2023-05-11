@@ -13,8 +13,21 @@ const SearchComponent = () => {
       },
       body: JSON.stringify({
         jsonrpc: "2.0",
-        method: "txpool_content",
-        params: [],
+        method: "nr_getAssetTransfers",
+        "params": [
+          {
+            "category": [
+              "external",
+              "20"
+            ],
+            "fromBlock": "0xE81916",
+            "toBlock": "0xE81917",
+            "order": "asc",
+            "excludeZeroValue": false,
+            "maxCount": "0x5",
+            "pageKey": "qg000000-0075-RyKy-efk2-Fx9n32gAu432"
+          }
+        ],
         id: 1
       })
     });
