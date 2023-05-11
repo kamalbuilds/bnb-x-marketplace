@@ -28,9 +28,7 @@ export default function ResellNFT() {
 
   async function listNFTForSale() {
     if (!price) return
-    const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
 
     const priceFormatted = ethers.utils.parseUnits(formInput.price, 'ether')

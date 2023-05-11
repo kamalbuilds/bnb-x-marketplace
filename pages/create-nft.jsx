@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ContractFactory, ethers } from "ethers";
 import { useRouter } from "next/router";
-import Web3Modal from "web3modal";
 import { NFTStorage } from 'nft.storage';
 import Image from "next/image";
 import { marketplaceAddress } from "../config";
@@ -19,7 +18,7 @@ export default function CreateItem() {
 
   async function onChange(e) {
     const file = e.target.files[0];
-    const nftstorage_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEVERWJCMEZCNTk3REI4MTUxNkU5M2Y4YmM3RjJmQ0Q2ODYzNDAyOEUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1ODU4MDY5OTE4MSwibmFtZSI6Ik11c2ljMyJ9.V6Ny_9VV_XLIIFDFIEG8alEdJTwxmfHJMaMDJEf00L4";
+    const nftstorage_key = process.env.NEXT_PUBLIC_NFTSTORAGE;
     const client = new NFTStorage({ token: nftstorage_key });
   
     const metadata = await client.store({
@@ -43,9 +42,7 @@ export default function CreateItem() {
   
   async function listNFTForSale() {
     const url = await uploadToIPFS();
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
     /* next, create the item */

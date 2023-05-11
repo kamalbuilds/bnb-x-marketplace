@@ -19,12 +19,8 @@ export default function MyAssets() {
     loadNFTs()
   }, [])
   async function loadNFTs() {
-    const web3Modal = new Web3Modal({
-      network: "mainnet",
-      cacheProvider: true,
-    })
-    const connection = await web3Modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
+    
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
 
     

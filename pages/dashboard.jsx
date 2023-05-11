@@ -16,12 +16,8 @@ export default function CreatorDashboard() {
     loadNFTs()
   }, [])
   async function loadNFTs() {
-    const web3Modal = new Web3Modal({
-      network: 'testnet',
-      cacheProvider: true,
-    })
-    const connection = await web3Modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection);
+    /* create a generic provider and query for unsold market items */
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
 
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer);
