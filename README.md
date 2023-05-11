@@ -8,7 +8,19 @@ Creation of NFT - https://mumbai.polygonscan.com/tx/0x92893bd0e933da8597a6435028
 
 # Technologies Used
 
-1. https://docs.nodereal.io/reference/uniswap-graphql-api - Using NodeReal to fetch the Swapping data from uniswap nd pancakeswap dex.
+1. https://docs.nodereal.io/ - Using NodeReal to provide efficient Multichain Support.
+
+The Enhanced API - Simplified Multichain Explorer can be highly useful in a multichain NFT Marketplace in a number of ways:
+
+Simplified Transaction Querying: The explorer would allow users to query transaction details with just a hash, without having to select the network or chain. This would make it easier for users to quickly find the transactions they are looking for without having to navigate different networks or chains.
+
+Multichain Support: The explorer would scan all available chains to return the corresponding results, regardless of the network. This means that users can access information from any blockchain they prefer without needing to switch between different interfaces.
+
+Real-Time Updates: The explorer provides real-time updates on the number of transactions and block height of each chain, providing users with up-to-date information. This would help users to stay informed about the current state of the blockchain they are interested in.
+
+Improved User Experience: By returning results in seconds rather than minutes, the Enhanced API - Simplified Multichain Explorer would improve the user experience of the multichain NFT Marketplace. Users would be able to access the information they need more quickly, which would help to increase engagement and usage of the platform.
+
+Overall, the Enhanced API - Simplified Multichain Explorer would provide a streamlined and efficient way for users to access information from multiple blockchain networks, and could help to make the multichain NFT Marketplace more user-friendly and accessible.
 
 2. Polyhedra - zkbridging the nfts
 
