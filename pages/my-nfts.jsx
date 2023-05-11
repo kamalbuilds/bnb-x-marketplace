@@ -1,7 +1,6 @@
 import { ethers } from 'ethers'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import Web3Modal from 'web3modal'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
@@ -19,7 +18,7 @@ export default function MyAssets() {
     loadNFTs()
   }, [])
   async function loadNFTs() {
-    
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
 
@@ -28,8 +27,8 @@ export default function MyAssets() {
     const data = await marketplaceContract.fetchMyNFTs()
 
     const items = await Promise.all(data.map(async i => {
-      const tokenURI = await marketplaceContract.tokenURI(i.tokenId)
-      const meta = await axios.get(tokenURI)
+      const tokenURI = await marketplaceContract.tokenURI(i.tokenId);
+      // const meta = await axios.get(tokenURI)
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
         price,
