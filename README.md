@@ -1,8 +1,8 @@
-# Bnb-x-marketplace
+# Bnb-marketplace
 
  A ZK NFT Marketplace , where the NFTs are utilised  to tokenize Real World assets like Real Estate.
  
- that leverages the data retrieved from PancakeSwap, Uniswap via  NodeReal and 1inch to provide users with a seamless trading experience.
+which leverages the data retrieved from PancakeSwap, Uniswap via  NodeReal and 1inch to provide users with a seamless trading experience.
 
 # Technologies Used
 
@@ -44,12 +44,7 @@ Overall, integrating a DEX into a marketplace can provide several benefits, incl
 
 To run this project locally, follow these steps.
 
-1. Clone the project locally, change into the directory, and install the dependencies:
-
-```sh
-git clone https://github.com/dabit3/polygon-ethereum-nextjs-marketplace.git
-
-cd polygon-ethereum-nextjs-marketplace
+1. Fork the repo and install the dependicies.
 
 # install using NPM or Yarn
 npm install
