@@ -26,7 +26,7 @@ module.exports = {
     binanceTestnet: {
       url: "https://endpoints.omniatech.io/v1/bsc/testnet/public",
       chainId: 97,
-      accounts: ['1156880db2768fe49431d238890240799814e3f27a007aab81c19c69b369fb81']
+      accounts: [process.env.privateKey]
     }
   },
   solidity: {

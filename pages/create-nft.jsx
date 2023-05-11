@@ -49,28 +49,19 @@ export default function CreateItem() {
     const signer = provider.getSigner();
 
     /* next, create the item */
-    const price = ethers.utils.parseUnits(formInput.price, "ether");
-    const gasPrice = await provider.getGasPrice();
-    const gasLimit = 200000;
-    const value = ethers.BigNumber.from(price).add(gasPrice.mul(gasLimit));
     let contract = new ethers.Contract(
       marketplaceAddress,
       NFTMarketplace,
       signer
     );
     console.log(contract,"contract");
-    // const value = ethers.utils.parseUnits("0.0001", "ether");
-    // let listingPrice = await contract.getListingPrice();
-    // listingPrice = listingPrice.toString();
-    let transaction = await contract.createToken(url, price, {
-      value: value,
-      gasLimit: gasLimit,
-      gasPrice: gasPrice
-    });
-    await transaction.wait();
-    console.log(transaction,"transaction");
-
-    router.push("/");
+    const price = ethers.utils.parseUnits(formInput.price, 'ether');
+    let listingPrice = await contract.getListingPrice();
+    listingPrice = listingPrice.toString();
+    let transaction = await contract.createToken(url, price, { value: listingPrice })
+    await transaction.wait()
+   
+    router.push('/')
   }
 
   return (
@@ -103,7 +94,6 @@ export default function CreateItem() {
     <Image src={fileUrl} alt="NFT Image" width={350} height={350} loader={() => fileUrl} className="rounded" />
   </div>
 )}
-
 
         <button
           onClick={listNFTForSale}

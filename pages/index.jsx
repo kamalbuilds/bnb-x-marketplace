@@ -8,6 +8,7 @@ import {
   marketplaceAddress
 } from '../config';
 
+console.log(marketplaceAddress,"marketplaceAddress")
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function Home() {
@@ -21,14 +22,16 @@ export default function Home() {
   const [loadingState, setLoadingState] = useState('not-loaded')
   useEffect(() => {
     LoadNFTs()
-  }, [])
+  }, []);
+
   async function LoadNFTs() {
+    
     /* create a generic provider and query for unsold market items */
-    const provider = new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
     console.log(contract);
     const data = await contract.fetchMarketItems();
-    console.log(data,"data");
+    console.log(data,"data fetched market items");
 
     /*
     *  map over items returned from smart contract and format 

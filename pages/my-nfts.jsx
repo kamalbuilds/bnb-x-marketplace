@@ -2,14 +2,14 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import {
   marketplaceAddress
-} from '../config'
+} from '../config';
 
-import NFTMarketplace from '../abi/NFTMarketplace.json'
+import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function MyAssets() {
   const [nfts, setNfts] = useState([])
@@ -20,14 +20,15 @@ export default function MyAssets() {
   }, [])
   async function loadNFTs() {
     const web3Modal = new Web3Modal({
-      network: "testnet",
+      network: "mainnet",
       cacheProvider: true,
     })
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
     const signer = provider.getSigner()
 
-    const marketplaceContract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer)
+    
+    const marketplaceContract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer);
     const data = await marketplaceContract.fetchMyNFTs()
 
     const items = await Promise.all(data.map(async i => {
