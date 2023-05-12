@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Chats from '../components/chat';
+// import Chats from '../components/chat';
 const Navbar = () => {
   return (
     <div className="bg-pink-500">
@@ -37,7 +37,7 @@ const Navbar = () => {
                 Dashboard
               </Button>
             </Link>
-            <Chats />
+            {/* <Chats /> */}
             <ConnectButton />
           </div>
         </Toolbar>
