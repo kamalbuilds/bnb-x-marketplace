@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+// import Chats from '../components/chat';
 const Navbar = () => {
   return (
     <div className="bg-pink-500">
@@ -12,26 +12,32 @@ const Navbar = () => {
             XBNB Marketplace
           </Typography>
           <div className="flex justify-center items-center">
-            <Link href="/">
+            <Link href="/" passHref>
               <Button color="inherit" className="text-white mr-6">
                 Home
               </Button>
             </Link>
-            <Link href="/create-nft">
+            <Link href="/create-nft" passHref>
               <Button color="inherit" className="text-white mr-6">
                 Sell NFT
               </Button>
             </Link>
-            <Link href="/my-nfts">
+            <Link href="/my-nfts" passHref>
               <Button color="inherit" className="text-white mr-6">
                 My NFTs
               </Button>
             </Link>
-            <Link href="/dashboard">
+            <Link href="/sbtmint" passHref>
+              <Button color="inherit" className="text-white mr-6">
+                Mint SBT
+              </Button>
+            </Link>
+            <Link href="/dashboard" passHref>
               <Button color="inherit" className="text-white mr-6">
                 Dashboard
               </Button>
             </Link>
+            {/* <Chats /> */}
             <ConnectButton />
           </div>
         </Toolbar>

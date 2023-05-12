@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { GraphQLClient, gql } from 'graphql-request';
 import { Box } from '@mui/material';
 
-function SwapData() {
+function Pancakeswap() {
   const [swaps, setSwaps] = useState([]);
 
   useEffect(() => {
@@ -76,4 +76,4 @@ function SwapData() {
   );
 }
 
-export default SwapData;
+export default Pancakeswap;
