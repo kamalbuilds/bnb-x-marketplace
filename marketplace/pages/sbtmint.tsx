@@ -20,13 +20,13 @@ const toZkAddress = '3UG1BBvv7viqwyg1QKsMVarnSPcdiRQ1aL2vnTgwjWYX';
 
 let isConnecting = false;
 
-export default function App() {
+export default function Sbtmint() {
+
   useEffect(() => {
     const injectedWeb3 = window.injectedWeb3
       ? (window.injectedWeb3['manta-wallet-js'] as InjectedWeb3)
       : null;
     setInjectedWeb3(injectedWeb3);
-    // do something with injectedWeb3 here
   }, []);
   
   const [injectedWeb3, setInjectedWeb3] = useState<InjectedWeb3 | null>(null);

@@ -3,7 +3,7 @@ import { ContractFactory, ethers } from "ethers";
 import { useRouter } from "next/router";
 import { NFTStorage } from 'nft.storage';
 import Image from "next/image";
-import { marketplaceAddress } from "../config";
+import { marketplaceAddress } from "../config.js";
 import NFTMarketplace from "../abi/NFTMarketplace.json";
 
 export default function CreateItem() {

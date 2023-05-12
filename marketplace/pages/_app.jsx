@@ -8,7 +8,6 @@ import Navbar from '../components/Navbar';
 function MyApp({ Component, pageProps }) {
   return (
     <div>
-  
       <ApolloProvider client={client}>
         <DynamicWagmi>
           <Navbar />
