@@ -2,8 +2,7 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import Image from 'next/image';
-import CircularProgress from '@mui/material';
-
+import { CircularProgress } from '@mui/material';
 import {
   marketplaceAddress
 } from '../config'
@@ -59,7 +58,7 @@ export default function CreatorDashboard() {
   }
   
   if (loadingState === 'not-loaded') {
-    return <h1>Loading...</h1>;
+    return <CircularProgress variant="outlined" />;
   }
 
   if (loadingState === 'loaded' && !nfts.length) {
