@@ -4,7 +4,7 @@ module.exports = {
         {
           protocol: 'https',
           hostname: 'bafybeieizgygxn3cntvweblnsuooughosdqsk7rz34izx33nupsltstezu.ipfs.dweb.link',
-          port: '',
+          port: ' ',
           pathname: '/king.png',
         },
       ],      
