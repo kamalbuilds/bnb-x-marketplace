@@ -6,7 +6,6 @@ import Image from "next/image";
 import { marketplaceAddress } from "../config";
 import NFTMarketplace from "../abi/NFTMarketplace.json";
 
-console.log(NFTMarketplace,"NFTMarketplace abi");
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
   const [formInput, updateFormInput] = useState({

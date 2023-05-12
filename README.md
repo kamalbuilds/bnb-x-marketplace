@@ -1,4 +1,4 @@
-# Bnb-marketplace
+# Bnb Cross Chain marketplace
 
  A ZK NFT Marketplace , where the NFTs are utilised  to tokenize Real World assets like Real Estate.
  
