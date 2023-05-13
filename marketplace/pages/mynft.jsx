@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import {
   marketplaceAddress
-} from '../config';
+} from '../config.js';
 
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 

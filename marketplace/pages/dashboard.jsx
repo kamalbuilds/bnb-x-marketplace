@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { CircularProgress } from '@mui/material';
 import {
   marketplaceAddress
-} from '../config'
+} from '../config.js'
 import NFTTransferForm from '../components/NFTTransferForm';
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 import { Button } from '@mui/material';
