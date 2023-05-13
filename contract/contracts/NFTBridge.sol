@@ -8,28 +8,29 @@ interface IZKBridgeEntrypoint {
     // @param dstChainId - the destination chain identifier
     // @param dstAddress - the address on destination chain
     // @param payload - a custom bytes payload to send to the destination contract
-    function send(uint16 dstChainId, address dstAddress, bytes memory payload) external payable returns (uint64 sequence);
+    function send(uint16 dstChainId, address dstAddress, bytes calldata payload) external payable returns (uint64 sequence);
 }
 
-contract NFTBridge {
+contract NFTBridge is IZKBridgeEntrypoint {
     function transferNFT(
         address _nftAddress,
         uint256 _tokenId,
         uint16 _tokenChain,
         uint16 _toChain,
         uint16 _dstChainId,
-        address _dstAddress
+        address _dstAddress,
+        bytes calldata _data
     ) external payable {
         // Get the ERC721 contract and approve the transfer of the NFT to the contract
         IERC721 nft = IERC721(_nftAddress);
         nft.approve(address(this), _tokenId);
 
-        // Encode the transfer data into a bytes payload
+        // Encode the transfer data and any additional data into a bytes payload
         bytes memory payload = abi.encode(
-            _tokenId,     // ID of the NFT to transfer
             _tokenChain,  // Chain ID of the NFT
-            _toChain      // Chain ID of the recipient
-        );
+            _toChain,     // Chain ID of the recipient
+            _tokenId      // ID of the NFT to transfer
+        , _data);
 
         // Send the payload to the destination chain
         IZKBridgeEntrypoint(_dstAddress).send{value: msg.value}(_dstChainId, address(this), payload);
@@ -38,3 +39,4 @@ contract NFTBridge {
         nft.transferFrom(address(this), msg.sender, _tokenId);
     }
 }
+

@@ -1,7 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config();
 const fs = require('fs');
-// const infuraId = fs.readFileSync(".infuraid").toString().trim() || "";
 
 module.exports = {
   defaultNetwork: "binanceTestnet",
@@ -16,12 +15,6 @@ module.exports = {
       url: "https://rpc-mumbai.matic.today",
       accounts: [process.env.privateKey]
     },
-    matic: {
-      // Infura
-      // url: `https://polygon-mainnet.infura.io/v3/${infuraId}`,
-      url: "https://rpc-mainnet.maticvigil.com",
-      accounts: [process.env.privateKey]
-    }
     */
     binanceTestnet: {
       url: "https://endpoints.omniatech.io/v1/bsc/testnet/public",
