@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.13",
+    "@blockless/sdk": "^1.1.0",
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@ipld/car": "^5.1.1",
@@ -27,6 +28,8 @@
     "@polkadot/util": "^12.1.2",
     "@polkadot/util-crypto": "^12.1.2",
     "@rainbow-me/rainbowkit": "^0.12.12",
+    "as-wasi": "^0.6.0",
+    "assemblyscript": "^0.25.0",
     "axios": "^0.26.0",
     "bignumber.js": "^9.1.1",
     "chai": "^4.3.6",
@@ -46,20 +49,17 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "wagmi": "^0.12.13",
-    "web3modal": "^1.9.5",
-    "@blockless/sdk": "^1.1.0",
-    "as-wasi": "^0.6.0",
-    "assemblyscript": "^0.25.0"
+    "web3modal": "^1.9.5"
   },
   "devDependencies": {
     "@types/node": "^20.1.0",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.4.14",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^2.2.19",
     "typescript": "^5.0.4"
   }
 }
