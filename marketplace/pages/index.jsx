@@ -9,22 +9,16 @@ import {
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function Home() {
-  const { getdata , isError, isLoading } = useContractRead({
-    address: marketplaceAddress,
-    abi: NFTMarketplace,
-    method: 'getListingPrice',
-  });
-  console.log('data:', getdata , isError, isLoading);
-  const [nfts, setNfts] = useState([]);
+  const [nfts, setNfts] = useState([])
   const [loadingState, setLoadingState] = useState('not-loaded')
-
-  async function LoadNFTs() {
+  useEffect(() => {
+    loadNFTs()
+  }, [])
+  async function loadNFTs() {
     /* create a generic provider and query for unsold market items */
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
-    console.log(contract);
-    const data = await contract.fetchMarketItems();
-    console.log(data,"data fetched market items");
+    const provider = new ethers.providers.JsonRpcProvider()
+    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, provider)
+    const data = await contract.fetchMarketItems()
 
     /*
     *  map over items returned from smart contract and format 
@@ -44,24 +38,24 @@ export default function Home() {
         description: meta.data.description,
       }
       return item
-    }));
-    LoadNFTs();
-    setNfts(items);
-    setLoadingState('loaded');
+    }))
+    setNfts(items)
+    setLoadingState('loaded') 
   }
-
   async function buyNft(nft) {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
+
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
-    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer)
+    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, signer)
 
     /* user will be prompted to pay the asking proces to complete the transaction */
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price
     })
-    await transaction.wait();
+    await transaction.wait()
+    loadNFTs()
   }
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
@@ -71,7 +65,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.image} alt="nft image"/>
+                <img src={nft.image} />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>

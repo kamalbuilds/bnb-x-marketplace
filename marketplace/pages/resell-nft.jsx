@@ -5,9 +5,9 @@ import axios from 'axios';
 import Image from 'next/image';
 import {
   marketplaceAddress
-} from '../config.js';
+} from '../config';
 
-import NFTMarketplace from '../abi/NFTMarketplace.json'
+import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function ResellNFT() {
   const [formInput, updateFormInput] = useState({ price: '', image: '' })
