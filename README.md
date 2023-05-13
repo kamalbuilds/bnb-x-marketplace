@@ -5,29 +5,30 @@ Bnb Cross Chain marketplace is a ZK NFT Marketplace that enables the tokenizatio
 Creation of NFT - https://mumbai.polygonscan.com/tx/0x92893bd0e933da8597a64350282e3702a9c209adba2667d214da7cfcfb67e1f4
 
 Technologies Used 💻🚀
-NodeReal - Using NodeReal to provide efficient Multichain Support.
+
+1. NodeReal - Using NodeReal to provide efficient Multichain Support.
 The Enhanced API - Simplified Multichain Explorer can be highly useful in a multichain NFT Marketplace in a number of ways:
 
-Simplified Transaction Querying: The explorer would allow users to query transaction details with just a hash, without having to select the network or chain. This would make it easier for users to quickly find the transactions they are looking for without having to navigate different networks or chains.
+2. Simplified Transaction Querying: The explorer would allow users to query transaction details with just a hash, without having to select the network or chain. This would make it easier for users to quickly find the transactions they are looking for without having to navigate different networks or chains.
 
-Multichain Support: The explorer would scan all available chains to return the corresponding results, regardless of the network. This means that users can access information from any blockchain they prefer without needing to switch between different interfaces.
+3. Multichain Support: The explorer would scan all available chains to return the corresponding results, regardless of the network. This means that users can access information from any blockchain they prefer without needing to switch between different interfaces.
 
-Real-Time Updates: The explorer provides real-time updates on the number of transactions and block height of each chain, providing users with up-to-date information. This would help users to stay informed about the current state of the blockchain they are interested in.
+4. Real-Time Updates: The explorer provides real-time updates on the number of transactions and block height of each chain, providing users with up-to-date information. This would help users to stay informed about the current state of the blockchain they are interested in.
 
-Improved User Experience: By returning results in seconds rather than minutes, the Enhanced API - Simplified Multichain Explorer would improve the user experience of the multichain NFT Marketplace. Users would be able to access the information they need more quickly, which would help to increase engagement and usage of the platform.
+5. Improved User Experience: By returning results in seconds rather than minutes, the Enhanced API - Simplified Multichain Explorer would improve the user experience of the multichain NFT Marketplace. Users would be able to access the information they need more quickly, which would help to increase engagement and usage of the platform.
 
-Polyhedra - zkbridging the nfts
+6. Polyhedra - zkbridging the nfts
 Multi-chain NFT and GameFi
 
-zkBridge empowers our platform to interact with diverse blockchain networks, unleashing unparalleled opportunities for virtual asset creation, ownership, fostering a thriving and interoperable digital landscape.
+7. zkBridge empowers our platform to interact with diverse blockchain networks, unleashing unparalleled opportunities for virtual asset creation, ownership, fostering a thriving and interoperable digital landscape.
 
-Particle Auth + RainbowKit
+8. Particle Auth + RainbowKit
 Particle Network SDK - utilising the NFT service
 
-Manta Network - For minting Zk SBTs of the tokenized assets.
+9. Manta Network - For minting Zk SBTs of the tokenized assets.
 With the help of Manta, you can mint Private SBTs for your assets.
 
-1inch - Dex Integrations
+10. 1inch - Dex Integrations
 Fusion Swap available for Users.
 
 ![image](https://user-images.githubusercontent.com/95926324/235235682-1bc0b663-153a-4480-b95f-d74a4b992c67.png)
@@ -79,3 +80,8 @@ npx hardhat run scripts/deploy.js --network localhost
 ```
 npm run dev
 ```
+NFT Creation 🔑
+The NFTs can be created using the Mumbai testnet by using the following link: https://mumbai.polygonscan.com/tx/0x92893bd0e933da8597a64350282e3702a9c209adba2667d214da7cfcfb67e1f4
+
+Conclusion 💡
+Overall, Bnb Cross Chain Marketplace is a powerful platform that enables the tokenization of real-world assets, while integrating with various technologies like NodeReal, Polyhedra, Particle Auth + RainbowKit, Manta Network, Dex Integrations, and Blockless. With its seamless trading experience and advanced features, it is an ideal platform for users looking to invest in and trade digital assets.
