@@ -58,7 +58,7 @@ export default function CreatorDashboard() {
   }
   
   if (loadingState === 'not-loaded') {
-    return <CircularProgress variant="outlined" />;
+    return <CircularProgress variant="outlined" size={100} />;
   }
 
   if (loadingState === 'loaded' && !nfts.length) {

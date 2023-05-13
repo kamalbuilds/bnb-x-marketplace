@@ -34,6 +34,8 @@ Particle Network SDK - utilising the NFT service
 
 4. Manta network- For minting Zk SBTs of the tokenised Assets. https://docs.manta.network/docs/developers/manta.js/how-to-mint-zk-sbt
 
+With the help of Manta you can mint Private SBTs for your assets.
+
 5. Dex Integrations 1inch
 
 Fusion Swap available for Users.
