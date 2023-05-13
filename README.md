@@ -1,15 +1,11 @@
-# Bnb Cross Chain marketplace
+Bnb Cross Chain marketplace 🌐🏠📈💰
 
- A ZK NFT Marketplace , where the NFTs are utilised  to tokenize Real World assets like Real Estate.
- 
-which leverages the data retrieved from PancakeSwap, Uniswap via  NodeReal and 1inch to provide users with a seamless trading experience.
+Bnb Cross Chain marketplace is a ZK NFT Marketplace that enables the tokenization of Real World assets like Real Estate. The platform leverages the data retrieved from PancakeSwap, Uniswap via NodeReal and 1inch to provide users with a seamless trading experience.
 
 Creation of NFT - https://mumbai.polygonscan.com/tx/0x92893bd0e933da8597a64350282e3702a9c209adba2667d214da7cfcfb67e1f4
 
-# Technologies Used
-
-1. https://docs.nodereal.io/ - Using NodeReal to provide efficient Multichain Support.
-
+Technologies Used 💻🚀
+NodeReal - Using NodeReal to provide efficient Multichain Support.
 The Enhanced API - Simplified Multichain Explorer can be highly useful in a multichain NFT Marketplace in a number of ways:
 
 Simplified Transaction Querying: The explorer would allow users to query transaction details with just a hash, without having to select the network or chain. This would make it easier for users to quickly find the transactions they are looking for without having to navigate different networks or chains.
@@ -20,29 +16,25 @@ Real-Time Updates: The explorer provides real-time updates on the number of tran
 
 Improved User Experience: By returning results in seconds rather than minutes, the Enhanced API - Simplified Multichain Explorer would improve the user experience of the multichain NFT Marketplace. Users would be able to access the information they need more quickly, which would help to increase engagement and usage of the platform.
 
-Overall, the Enhanced API - Simplified Multichain Explorer would provide a streamlined and efficient way for users to access information from multiple blockchain networks, and could help to make the multichain NFT Marketplace more user-friendly and accessible.
-
-2. Polyhedra - zkbridging the nfts
-
+Polyhedra - zkbridging the nfts
 Multi-chain NFT and GameFi
 
-zkBridge empowers our platform to interact with diverse blockchain networks, unleashing unparalleled opportunities for virtual asset creation, ownership,  fostering a thriving and interoperable digital landscape.
+zkBridge empowers our platform to interact with diverse blockchain networks, unleashing unparalleled opportunities for virtual asset creation, ownership, fostering a thriving and interoperable digital landscape.
 
-3. Particle Auth + RainbowKit 
-
+Particle Auth + RainbowKit
 Particle Network SDK - utilising the NFT service
 
-4. Manta network- For minting Zk SBTs of the tokenised Assets. https://docs.manta.network/docs/developers/manta.js/how-to-mint-zk-sbt
+Manta Network - For minting Zk SBTs of the tokenized assets.
+With the help of Manta, you can mint Private SBTs for your assets.
 
-With the help of Manta you can mint Private SBTs for your assets.
-
-5. Dex Integrations 1inch
-
+1inch - Dex Integrations
 Fusion Swap available for Users.
 
 ![image](https://user-images.githubusercontent.com/95926324/235235682-1bc0b663-153a-4480-b95f-d74a4b992c67.png)
 
-##  Advantages of Integrating a decentralized exchange (DEX) into a marketplace can be useful in several ways:
+Blockless - Provides the marketplace to be a truly censorship-resistant and dynamic web hosting.
+
+#  Advantages of Integrating a decentralized exchange (DEX) into a marketplace can be useful in several ways: 🔄🔒💰
 
 Increased liquidity: By integrating a DEX, you can increase liquidity for your marketplace. A DEX allows users to trade cryptocurrencies without the need for a centralized exchange, which means that your marketplace can offer a broader range of cryptocurrencies without having to hold them all in-house.
 
@@ -55,10 +47,6 @@ Lower fees: DEXs typically charge lower fees than centralized exchanges since th
 Increased decentralization: Integrating a DEX into a marketplace can help promote decentralization, which is a key principle of blockchain technology. By decentralizing the exchange of assets, users can have greater control over their assets and the overall ecosystem.
 
 Overall, integrating a DEX into a marketplace can provide several benefits, including increased liquidity, enhanced security, and lower fees, which can help attract more users to your platform and increase overall trading volumes.
-
-6. Blockless 
-
-Blockless provides the marketplace to be a truly censorship-resistant and dynamic web hosting.
 
 #### Local setup
 
