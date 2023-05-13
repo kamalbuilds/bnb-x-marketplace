@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf build",
+    "build:release": "npm run clean; asc index.ts --target release",
+    "build:debug": "npm run clean; asc index.ts --target debug"
   },
   "dependencies": {
     "@apollo/client": "^3.7.13",
@@ -43,7 +46,10 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "wagmi": "^0.12.13",
-    "web3modal": "^1.9.5"
+    "web3modal": "^1.9.5",
+    "@blockless/sdk": "^1.1.0",
+    "as-wasi": "^0.6.0",
+    "assemblyscript": "^0.25.0"
   },
   "devDependencies": {
     "@types/node": "^20.1.0",
