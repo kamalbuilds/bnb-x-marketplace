@@ -54,13 +54,17 @@ Increased decentralization: Integrating a DEX into a marketplace can help promot
 
 Overall, integrating a DEX into a marketplace can provide several benefits, including increased liquidity, enhanced security, and lower fees, which can help attract more users to your platform and increase overall trading volumes.
 
+6. Blockless 
+
+Blockless provides the marketplace to be a truly censorship-resistant and dynamic web hosting.
+
 #### Local setup
 
 To run this project locally, follow these steps.
 
 1. Fork the repo and install the dependicies.
 
-# install using NPM or Yarn
+## Install using NPM or Yarn
 npm install
 
 # or
