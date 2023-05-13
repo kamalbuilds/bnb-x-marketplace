@@ -17,12 +17,12 @@ const Navbar = () => {
                 Home
               </Button>
             </Link>
-            <Link href="/create-nft" passHref>
+            <Link href="/createnft" passHref>
               <Button color="inherit" className="text-white mr-6">
                 Sell NFT
               </Button>
             </Link>
-            <Link href="/my-nfts" passHref>
+            <Link href="/mynft" passHref>
               <Button color="inherit" className="text-white mr-6">
                 My NFTs
               </Button>
