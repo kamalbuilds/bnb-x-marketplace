@@ -5,57 +5,71 @@ import Image from 'next/image';
 import { useContractRead } from 'wagmi';
 import {
   marketplaceAddress
-} from '../config.js';
+} from '../config';
+
+console.log(marketplaceAddress,"marketplaceAddress")
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function Home() {
-  const [nfts, setNfts] = useState([])
+  const { getdata , isError, isLoading } = useContractRead({
+    address: marketplaceAddress,
+    abi: NFTMarketplace,
+    method: 'getListingPrice',
+  });
+  console.log('data:', getdata , isError, isLoading);
+  const [nfts, setNfts] = useState([]);
   const [loadingState, setLoadingState] = useState('not-loaded')
   useEffect(() => {
-    loadNFTs()
-  }, [])
-  async function loadNFTs() {
-    /* create a generic provider and query for unsold market items */
-    const provider = new ethers.providers.JsonRpcProvider()
-    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, provider)
-    const data = await contract.fetchMarketItems()
 
-    /*
-    *  map over items returned from smart contract and format 
-    *  them as well as fetch their token metadata
-    */
-    const items = await Promise.all(data.map(async i => {
-      const tokenUri = await contract.tokenURI(i.tokenId)
-      const meta = await axios.get(tokenUri)
-      let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-      let item = {
-        price,
-        tokenId: i.tokenId.toNumber(),
-        seller: i.seller,
-        owner: i.owner,
-        image: meta.data.image,
-        name: meta.data.name,
-        description: meta.data.description,
+    if (typeof window.ethereum != 'undefined') {
+      async function LoadNFTs() {
+        /* create a generic provider and query for unsold market items */
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
+        console.log(contract);
+        const data = await contract.fetchMarketItems();
+        console.log(data,"data fetched market items");
+
+        /*
+        *  map over items returned from smart contract and format 
+        *  them as well as fetch their token metadata
+        */
+        const items = await Promise.all(data.map(async i => {
+          const tokenUri = await contract.tokenURI(i.tokenId)
+          const meta = await axios.get(tokenUri)
+          let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
+          let item = {
+            price,
+            tokenId: i.tokenId.toNumber(),
+            seller: i.seller,
+            owner: i.owner,
+            image: meta.data.image,
+            name: meta.data.name,
+            description: meta.data.description,
+          }
+          return item
+        }))
+        setNfts(items);
+        setLoadingState('loaded');
       }
-      return item
-    }))
-    setNfts(items)
-    setLoadingState('loaded') 
-  }
+    }
+
+    LoadNFTs()
+  }, []);
+
+
   async function buyNft(nft) {
     /* needs the user to sign the transaction, so will use Web3Provider and sign it */
-
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
-    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, signer)
+    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer)
 
     /* user will be prompted to pay the asking proces to complete the transaction */
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price
     })
-    await transaction.wait()
-    loadNFTs()
+    await transaction.wait();
   }
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
@@ -65,7 +79,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
+                <Image src={nft.image} alt="nft image"/>
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>
