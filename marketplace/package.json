@@ -13,6 +13,7 @@
     "build:debug": "npm run clean; asc index.ts --target debug"
   },
   "dependencies": {
+    "@1inch/fusion-sdk": "^0.1.7",
     "@apollo/client": "^3.7.13",
     "@blockless/sdk": "^1.1.0",
     "@emotion/react": "^11.10.8",
@@ -30,7 +31,7 @@
     "@rainbow-me/rainbowkit": "^0.12.12",
     "as-wasi": "^0.6.0",
     "assemblyscript": "^0.25.0",
-    "axios": "^0.26.0",
+    "axios": "^1.4.0",
     "bignumber.js": "^9.1.1",
     "chai": "^4.3.6",
     "dotenv": "^16.0.3",
