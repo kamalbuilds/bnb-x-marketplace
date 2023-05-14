@@ -32,6 +32,16 @@ const Navbar = () => {
                 Dashboard
               </Button>
             </Link>
+            <Link href="/sbtmint" passHref>
+              <Button color="inherit" className="text-white mr-6">
+                Mint SBT
+              </Button>
+            </Link>
+            <Link href="https://chatmarketplace.vercel.app/" passHref>
+              <Button color="inherit" className="text-white mr-6">
+                Chat
+              </Button>
+            </Link>
             <ConnectButton />
           </div>
         </Toolbar>
