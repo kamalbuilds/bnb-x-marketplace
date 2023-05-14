@@ -10,12 +10,12 @@ import {
 import NFTMarketplace from '../abi/NFTMarketplace.json';
 
 export default function Home() {
-  const { getdata , isError, isLoading } = useContractRead({
-    address: marketplaceAddress,
-    abi: NFTMarketplace,
-    method: 'getListingPrice',
-  });
-  console.log('data:', getdata , isError, isLoading);
+  // const { getdata , isError, isLoading } = useContractRead({
+  //   address: marketplaceAddress,
+  //   abi: NFTMarketplace,
+  //   method: 'getListingPrice',
+  // });
+  // console.log('data:', getdata , isError, isLoading);
   const [nfts, setNfts] = useState([]);
   const [loadingState, setLoadingState] = useState('not-loaded')
 
@@ -23,7 +23,6 @@ export default function Home() {
     /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, provider);
-    console.log(contract);
     const data = await contract.fetchMarketItems();
     console.log(data,"data fetched market items");
 
@@ -33,14 +32,18 @@ export default function Home() {
     */
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
-      const meta = await axios.get(tokenUri)
-      let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
+      const metadataUri = tokenUri.replace('ipfs://', 'https://ipfs.io/ipfs/');
+      console.log(metadataUri, "metadataUri");
+      const meta = await axios.get(metadataUri);
+      let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
+      const img = meta.data.image.replace('ipfs://', 'https://ipfs.io/ipfs/');
+      console.log(img, "img");
       let item = {
         price,
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: meta.data.image,
+        image: img,
         name: meta.data.name,
         description: meta.data.description,
       }
@@ -78,7 +81,9 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.image} alt="nft image"/>
+                <div className='mx-6'>
+                  <Image src={nft.image} alt="nft image" width="100" height="100" />
+                </div>
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>

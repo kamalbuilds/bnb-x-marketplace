@@ -25,65 +25,57 @@ export default function CreatorDashboard() {
     const signer = provider.getSigner();
   
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace, signer);
-    const data = await contract.fetchItemsListed();
-  
+
+    const data = await contract.fetchMyNFTs();
+    console.log(data, "data");
+
     const items = await Promise.all(data.map(async i => {
-      const tokenUri = await contract.tokenURI(i.tokenId);
-      const metadataUri = tokenUri.replace('ipfs://', 'https://nftstorage.link/ipfs/');
-  
-      const response = await fetch(metadataUri);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch metadata from ${metadataUri}. Status: ${response.status}`);
-      }
-  
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error(`Invalid content type. Expected application/json but received ${contentType}`);
-      }
-  
-      const meta = await response.json();
+      const tokenUri = await contract.tokenURI(i.tokenId)
+      const metadataUri = tokenUri.replace('ipfs://', 'https://ipfs.io/ipfs/');
+      console.log(metadataUri, "metadataUri");
+      const meta = await axios.get(metadataUri);
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether');
+      const img = meta.data.image.replace('ipfs://', 'https://ipfs.io/ipfs/');
+      console.log(img, "img");
       let item = {
         price,
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: meta.image,
+        image: img,
+        name: meta.data.name,
+        description: meta.data.description,
       }
-      return item;
-    }));
-  
+      return item
+    }))
     setNfts(items);
-    setLoadingState('loaded'); 
-  }
-  
-  if (loadingState === 'not-loaded') {
-    return <CircularProgress variant="outlined" size={100} />;
+    setLoadingState('loaded');
   }
 
-  if (loadingState === 'loaded' && !nfts.length) {
-    return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>);
+  async function transferNFT(nft) {
+    setTransfer(true);
   }
+
+  if(loadingState !== 'loaded') return (<div className="flex justify-center"><CircularProgress /></div>);
+  if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items owned</h1>)
 
   return (
-    <div>
-      <div className="p-4">
-        <h2 className="text-2xl py-2">Items Listed</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+    <div className="flex justify-center">
+      <div className="px-4" style={{ maxWidth: '1600px' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <div className="p-4 bg-black">
-                  <p className='text-2xl font-bold text-white'>Token Id- {nft.tokenId}</p>
-                  <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
+                <Image src={nft.image} alt="nft image" width="100" height="100" />
+                <div className="p-4">
+                  <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
+                  <div style={{ height: '70px', overflow: 'hidden' }}>
+                    <p className="text-gray-400">{nft.description}</p>
+                  </div>
                 </div>
-                <Image
-                  src="https://bafybeieizgygxn3cntvweblnsuooughosdqsk7rz34izx33nupsltstezu.ipfs.dweb.link/king.png"
-                  alt="nft img"
-                  width={100}
-                  height={100}
-                  className="rounded"
-                />
+                <div className="p-4 bg-black">
+                  <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
+                </div>
                 <p className="text-2xl font-bold ">Owner - {nft.owner}</p>
               </div>
             ))
